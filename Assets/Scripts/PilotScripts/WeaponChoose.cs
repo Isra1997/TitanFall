@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class WeaponChoose : MonoBehaviour
 {
     public static WeaponChoose Instance;
+    public bool isSnipper = false;
+    public bool isAssault = false;
     public bool isGun=false;
-    public bool isSnipper=false;
-    public bool isAssault=false;
     public bool isRocket=false;
     public bool isGrenade=false;
     public bool isLegion = false;
@@ -117,8 +117,8 @@ public class WeaponChoose : MonoBehaviour
         res[2] = isGun;
         res[3] = isRocket;
         res[4] = isGrenade;
-        res[5] = isIon;
-        res[6] = isLegion;
+        res[5] = isLegion;
+        res[6] = isIon;
         return res;
     }
 }

@@ -1023,7 +1023,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1749037887}
-        m_MethodName: chooseGrenade
+        m_MethodName: chooseGun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2839,9 +2839,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd07e1c4803f949ada5e516bb8eb6ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGun: 0
   isSnipper: 0
   isAssault: 0
+  isGun: 0
   isRocket: 0
   isGrenade: 0
   isLegion: 0

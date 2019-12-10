@@ -15,35 +15,85 @@ public class weaponSwitching : MonoBehaviour
     private assaultRifle ar;
     private sniperRifle sr;
     private shotgun sg;
-
+    private RocketLauncher rl;
+    private LegionWeapon lw;
+    private IonScript ion;
+    private bool[] ChoosenWeapons;
 
 
     // Start is called before the first frame update
     void Start()
     {
 
-        foreach (Transform w in transform)
+        ChoosenWeapons = GameObject.Find("ChoosenWeapons").GetComponent<WeaponChoose>().getData();
+        //SnipperRiffel
+        if (ChoosenWeapons[0])
         {
-            if (w.gameObject.name == "SnipperRiffel")
-            {
-                sr = w.GetComponent<sniperRifle>();
-            }
-            if (w.gameObject.name == "AssultRiffel")
-            {
-                ar = w.GetComponent<assaultRifle>();
-            }
-            if (w.gameObject.name == "ShotGun")
-            {
-               sg = w.GetComponent<shotgun>();
-            }
+            sr = transform.GetChild(0).GetComponent<sniperRifle>();
         }
+        else
+        {
+            Destroy(GetComponent<Transform>().GetChild(0).gameObject);
+        }
+
+        //AssultRiffel
+        if (ChoosenWeapons[1])
+        {
+            ar = transform.GetChild(1).GetComponent<assaultRifle>();
+        }
+        else
+        {
+            Destroy(GetComponent<Transform>().GetChild(1).gameObject);
+        }
+
+        //Shotgun
+        if (ChoosenWeapons[2])
+        {
+            sg = transform.GetChild(2).GetComponent<shotgun>();
+        }
+        else
+        {
+            Destroy(GetComponent<Transform>().GetChild(2).gameObject);
+        }
+
+        //RocketLauncher
+        if (ChoosenWeapons[3])
+        {
+            rl = GetComponent<Transform>().GetChild(3).GetComponent<RocketLauncher>();
+        }
+        else
+        {
+            Destroy(GetComponent<Transform>().GetChild(3).gameObject);
+        }
+
+        //weapon Titan Legon
+        if (ChoosenWeapons[4])
+        {
+            lw = GetComponent<Transform>().GetChild(4).GetComponent<LegionWeapon>();
+        }
+        else
+        {
+            Destroy(GetComponent<Transform>().GetChild(4).gameObject);
+        }
+
+        //weapon Titan Ion
+        if (ChoosenWeapons[5])
+        {
+            ion = GetComponent<Transform>().GetChild(5).GetComponent<IonScript>();
+        }
+        else
+        {
+            Destroy(GetComponent<Transform>().GetChild(5).gameObject);
+        }
+        
     }
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (selectedWeapon == 4)
+            if (selectedWeapon == 1)
             {
                 selectedWeapon = 0;
             }
@@ -75,7 +125,11 @@ public class weaponSwitching : MonoBehaviour
                 {
                     sg.setAmmo();
                 }
-                
+                if (w.gameObject.name == "RPG7")
+                {
+                    rl.setAmmo();
+                }
+
             }
             else
             {
