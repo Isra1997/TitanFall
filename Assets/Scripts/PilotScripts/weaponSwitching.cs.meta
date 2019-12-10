@@ -1,0 +1,36 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class weaponSwitching : MonoBehaviour
+{
+    public int selectedWeapon = 0;
+    // Start is called before the first frame update
+    void Start()
+    {        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z)){
+            if(selectedWeapon==2){
+                selectedWeapon =0;
+            } else{
+                selectedWeapon++;
+            }
+            selectWeapon();
+        }
+    }
+    void selectWeapon(){
+        int i =0;
+        foreach(Transform w in transform){
+            if(i==selectedWeapon){
+                w.gameObject.SetActive(true);
+            } else{
+                w.gameObject.SetActive(false);
+            }
+            i++;
+        }  
+    }
+}
