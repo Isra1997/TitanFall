@@ -22,8 +22,8 @@ public class Pausemenu : MonoBehaviour
             if (!isPaused)
             {
                 Time.timeScale = 0f;
-                ourPlayer.GetComponent<FirstPersonController>().enabled = false;
                 pausemenu.SetActive(true);
+                ourPlayer.GetComponent<FirstPersonController>().enabled = false;
                 isPaused = true;
             }
             else
@@ -37,9 +37,9 @@ public class Pausemenu : MonoBehaviour
 
     public void Ourresume()
     {
+        pausemenu.SetActive(false);
         ourPlayer.GetComponent<FirstPersonController>().enabled = true;
         Time.timeScale = 1f;    
-        pausemenu.SetActive(false);
     }
 
     public void Restart()

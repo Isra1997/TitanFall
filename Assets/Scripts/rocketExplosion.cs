@@ -25,14 +25,12 @@ public class rocketExplosion : MonoBehaviour
             Destroy(instantiatedObj, 3f);
             if (shootedEnemy.gameObject.tag == "EnemyTitan")
             {
-                instantiatedObj = Instantiate(explosionEffect, transform.position, transform.rotation);
                 shootedEnemy.gameObject.GetComponent<EnemyTitan>().takeDamage(150);
                 ph.setTitanfall(100, 50);
             }
 
             if (shootedEnemy.gameObject.tag == "EnemyPilot")
             {
-                instantiatedObj = Instantiate(explosionEffect, transform.position, transform.rotation);
                 shootedEnemy.gameObject.GetComponent<EnemyPilot>().takeDamage(150);
                 ph.setTitanfall(100, 10);
 

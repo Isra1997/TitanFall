@@ -27,14 +27,12 @@ public class grenadeExplosion : MonoBehaviour
             Destroy(instantiatedObj, 3f);
             if (shootedEnemy.gameObject.tag == "EnemyTitan")
             {
-                instantiatedObj = Instantiate(explosionEffect, transform.position, transform.rotation);
                 shootedEnemy.gameObject.GetComponent<EnemyTitan>().takeDamage(125);
                 ph.setTitanfall(100, 50);
             }
 
             if (shootedEnemy.gameObject.tag == "EnemyPilot")
             {
-                instantiatedObj = Instantiate(explosionEffect, transform.position, transform.rotation);
                 //target.TakeDamage(125, 10);
                 shootedEnemy.gameObject.GetComponent<EnemyPilot>().takeDamage(125);
                 ph.setTitanfall(100, 10);
