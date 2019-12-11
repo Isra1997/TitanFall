@@ -9,7 +9,7 @@ public class rocketExplosion : MonoBehaviour
     private Collider[] shootedEnemies;
     private GameObject instantiatedObj;
     public LayerMask explosionLayers;
-
+    public PilotHealth ph;
     void OnCollisionEnter(Collision collision)
     {
         Explosion(collision.contacts[0].point);
@@ -23,16 +23,17 @@ public class rocketExplosion : MonoBehaviour
         {
             instantiatedObj = Instantiate(explosionEffect, transform.position, transform.rotation);
             Destroy(instantiatedObj, 3f);
-            Target target = shootedEnemy.gameObject.GetComponent<Target>();
             if (shootedEnemy.gameObject.tag == "EnemyTitan")
             {
-
-                target.TakeDamage(150, 50);
+                shootedEnemy.gameObject.GetComponent<EnemyTitan>().takeDamage(150);
+                ph.setTitanfall(100, 50);
             }
 
             if (shootedEnemy.gameObject.tag == "EnemyPilot")
             {
-                target.TakeDamage(150, 10);
+                shootedEnemy.gameObject.GetComponent<EnemyPilot>().takeDamage(150);
+                ph.setTitanfall(100, 10);
+
             }
             Destroy(gameObject);
         }

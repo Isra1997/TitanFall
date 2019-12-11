@@ -7667,7 +7667,6 @@ GameObject:
   - component: {fileID: 602625854274793992}
   - component: {fileID: 2570502101858533687}
   - component: {fileID: 1408418221}
-  - component: {fileID: -2497394582743640791}
   m_Layer: 0
   m_Name: EnemyPilot
   m_TagString: EnemyPilot
@@ -7865,20 +7864,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.660041, y: 2.4076188, z: 2.671026}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &-2497394582743640791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5804488032916712801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc1edbb847d70947b8d3b124c1452f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  ph: {fileID: 0}
 --- !u!1 &5815301447240685828
 GameObject:
   m_ObjectHideFlags: 0

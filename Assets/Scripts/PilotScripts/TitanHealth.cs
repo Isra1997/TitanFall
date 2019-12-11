@@ -55,6 +55,11 @@ public class TitanHealth : MonoBehaviour
         
     }
 
+    public int GetHealth()
+    {
+        return CurrentHealth;
+    }
+
     public void decDash()
     {
         if (currentDash - 1 <= 0)

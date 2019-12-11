@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EnemyPilotSniper : MonoBehaviour
 {
-    const int sniperRange = 100;
+    const int sniperRange = 1000;
     public ParticleSystem muzzleFlash;
     public PilotHealth ph;
+    public TitanHealth th;
     bool routineFinished = true;
 
 
@@ -21,17 +22,19 @@ public class EnemyPilotSniper : MonoBehaviour
         if (playerInScope() && routineFinished)
         {
             //attack();
-
+            this.gameObject.GetComponent<Animator>().SetBool("fire", true);
+            transform.LookAt(GameObject.FindGameObjectsWithTag("player")[0].transform);
             muzzleFlash.Play();
+            //muzzleFlash.Play();
             if (ph.enabled)
             {
-                ph.setHealth(ph.GetHealth() - 5);
+                ph.setHealth(ph.GetHealth() - 85);
             }
             else
             {
-                //affect the titan
+                th.setHealth(th.GetHealth() - 85);
             }
-            
+ 
             StartCoroutine(attack());
         }
     }
@@ -45,6 +48,8 @@ public class EnemyPilotSniper : MonoBehaviour
     {
         routineFinished = false;
         //Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(this.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        this.gameObject.GetComponent<Animator>().SetBool("fire", false);
         yield return new WaitForSeconds(10);
         //After we have waited 5 seconds print the time again.
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);

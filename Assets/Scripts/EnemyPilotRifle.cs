@@ -3,11 +3,11 @@ using System.Collections;
 
 public class EnemyPilotRifle : MonoBehaviour
 {
-    const int rifleRange = 65;
+    const int rifleRange = 650;
     public ParticleSystem muzzleFlash;
     public PilotHealth ph;
     bool routineFinished = true;
-
+    public TitanHealth th;
 
     // Start is called before the first frame update
     void Start()
@@ -19,18 +19,20 @@ public class EnemyPilotRifle : MonoBehaviour
     {
         if (playerInScope() && routineFinished)
         {
-            //attack();
-
+            
+            this.gameObject.GetComponent<Animator>().SetBool("fire", true);
+            transform.LookAt(GameObject.FindGameObjectsWithTag("player")[0].transform);
             muzzleFlash.Play();
+            //muzzleFlash.Play();
             if (ph.enabled)
             {
-             ph.setHealth(ph.GetHealth() - 85);
+                ph.setHealth(ph.GetHealth() - 10);
             }
             else
             {
-                //affect the titan
+                th.setHealth(th.GetHealth() - 10);
             }
-            
+
             StartCoroutine(attack());
         }
     }
@@ -43,6 +45,8 @@ public class EnemyPilotRifle : MonoBehaviour
     IEnumerator attack()
     {
         routineFinished = false;
+        yield return new WaitForSeconds(this.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        this.gameObject.GetComponent<Animator>().SetBool("fire", false);
         //Debug.Log("Started Coroutine at timestamp : " + Time.time);
         yield return new WaitForSeconds(10);
         //After we have waited 5 seconds print the time again.

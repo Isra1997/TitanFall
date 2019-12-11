@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class EnemyPilotGun : MonoBehaviour
 {
-    const int gunRange = 4;
+    const int gunRange = 40;
     public ParticleSystem muzzleFlash;
     public PilotHealth ph;
     bool routineFinished = true;
+    public TitanHealth th;
 
 
     // Start is called before the first frame update
@@ -20,19 +21,26 @@ public class EnemyPilotGun : MonoBehaviour
     {
         if (playerInScope() && routineFinished)
         {
-            //attack();
+            if (playerInScope() && routineFinished)
+            {
 
-            muzzleFlash.Play();
-            if (ph.enabled)
-            {
-                ph.setHealth(ph.GetHealth() - 70);
+                this.gameObject.GetComponent<Animator>().SetBool("fire", true);
+                transform.LookAt(GameObject.FindGameObjectsWithTag("player")[0].transform);
+                muzzleFlash.Play();
+                //muzzleFlash.Play();
+                if (ph.enabled)
+                {
+                    ph.setHealth(ph.GetHealth() - 70);
+                    Debug.Log(ph.GetHealth());
+                }
+                else
+                {
+                    th.setHealth(th.GetHealth() - 70);
+                    Debug.Log(ph.GetHealth());
+                }
+
+                StartCoroutine(attack());
             }
-            else
-            {
-                //affect titan
-            }
-            
-            StartCoroutine(attack());
         }
     }
     bool playerInScope()
@@ -45,6 +53,8 @@ public class EnemyPilotGun : MonoBehaviour
     {
         routineFinished = false;
         //Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(this.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        this.gameObject.GetComponent<Animator>().SetBool("fire", false);
         yield return new WaitForSeconds(10);
         //After we have waited 5 seconds print the time again.
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);

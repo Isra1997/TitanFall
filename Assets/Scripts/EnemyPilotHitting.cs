@@ -21,7 +21,6 @@ public class EnemyPilotHitting : StateMachineBehaviour
     {
         animator.SetBool("hit", false);
         animator.SetBool("walking", true);
-        Debug.Log("Exit");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
