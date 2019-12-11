@@ -43,14 +43,40 @@ public class TitanScript : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Space) &&
-            (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) ||
-            Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W) ||
-            Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow) ||
-            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
+        //Start the dodging
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.A))
         {
-            Debug.Log("dodge the bullet");
+            Debug.Log("dodge the A");
         }
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.S))
+        {
+            Debug.Log("dodge the S");
+        }
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.D))
+        {
+            Debug.Log("dodge the D");
+        }
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.W))
+        {
+            Debug.Log("dodge the W");
+        }
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.DownArrow))
+        {
+            Debug.Log("dodge the down");
+        }
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.UpArrow))
+        {
+            Debug.Log("dodge the up");
+        }
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.LeftArrow))
+        {
+            Debug.Log("dodge the left");
+        }
+        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.LeftArrow))
+        {
+            Debug.Log("dodge the right");
+        }
+        //End the dodging
         //Check if titan died
         if (th.isdestroyed)
         {
@@ -69,7 +95,7 @@ public class TitanScript : MonoBehaviour
             Titan.GetComponent<Animator>().Play("Titianall");
         }
 
-        //TitanFall Meter
+        //Titan embark and disembark
         if (Input.GetKeyDown(KeyCode.E) && inrange)
         {
             if (isdeployed)
