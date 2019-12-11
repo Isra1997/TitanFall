@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyPilotSniper : MonoBehaviour
 {
-    const int sniperRange = 100000;
+    const int sniperRange = 100;
     public ParticleSystem muzzleFlash;
     public PilotHealth ph;
     bool routineFinished = true;
@@ -23,7 +23,15 @@ public class EnemyPilotSniper : MonoBehaviour
             //attack();
 
             muzzleFlash.Play();
-            ph.setHealth(ph.GetHealth() - 5);
+            if (ph.enabled)
+            {
+                ph.setHealth(ph.GetHealth() - 5);
+            }
+            else
+            {
+                //affect the titan
+            }
+            
             StartCoroutine(attack());
         }
     }
