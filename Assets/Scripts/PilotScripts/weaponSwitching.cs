@@ -17,6 +17,7 @@ public class weaponSwitching : MonoBehaviour
     private shotgun sg;
     private RocketLauncher rl;
     private LegionWeapon lw;
+    private GrenadeLauncher gl;
     private IonScript ion;
     private bool[] ChoosenWeapons;
 
@@ -34,6 +35,7 @@ public class weaponSwitching : MonoBehaviour
         else
         {
             Destroy(GetComponent<Transform>().GetChild(0).gameObject);
+            this.GetComponent<Transform>().GetChild(1).gameObject.SetActive(true);
         }
 
         //AssultRiffel
@@ -44,6 +46,7 @@ public class weaponSwitching : MonoBehaviour
         else
         {
             Destroy(GetComponent<Transform>().GetChild(1).gameObject);
+            GetComponent<Transform>().GetChild(2).gameObject.SetActive(true);
         }
 
         //Shotgun
@@ -66,24 +69,34 @@ public class weaponSwitching : MonoBehaviour
             Destroy(GetComponent<Transform>().GetChild(3).gameObject);
         }
 
-        //weapon Titan Legon
+        //GrenadeLauncher
         if (ChoosenWeapons[4])
         {
-            lw = GetComponent<Transform>().GetChild(4).GetComponent<LegionWeapon>();
+            gl = GetComponent<Transform>().GetChild(4).GetComponent<GrenadeLauncher>();
         }
         else
         {
             Destroy(GetComponent<Transform>().GetChild(4).gameObject);
         }
 
-        //weapon Titan Ion
+        //weapon Titan Legon
         if (ChoosenWeapons[5])
         {
-            ion = GetComponent<Transform>().GetChild(5).GetComponent<IonScript>();
+            lw = GetComponent<Transform>().GetChild(5).GetComponent<LegionWeapon>();
         }
         else
         {
             Destroy(GetComponent<Transform>().GetChild(5).gameObject);
+        }
+
+        //weapon Titan Ion
+        if (ChoosenWeapons[6])
+        {
+            ion = GetComponent<Transform>().GetChild(6).GetComponent<IonScript>();
+        }
+        else
+        {
+            Destroy(GetComponent<Transform>().GetChild(6).gameObject);
         }
         
     }
@@ -128,6 +141,10 @@ public class weaponSwitching : MonoBehaviour
                 if (w.gameObject.name == "RPG7")
                 {
                     rl.setAmmo();
+                }
+                if (w.gameObject.name == "RGD-5")
+                {
+                    gl.setAmmo();
                 }
 
             }
