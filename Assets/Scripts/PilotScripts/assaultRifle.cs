@@ -55,19 +55,17 @@ public class assaultRifle : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            Target target = hit.transform.GetComponent<Target>();
-            if (target != null)
+            if (hit.transform.CompareTag("EnemyTitan"))
             {
-                if (hit.transform.CompareTag("EnemyTitan"))
-                {
-                    target.TakeDamage(damage, 50);
-                }
-                if (hit.transform.CompareTag("EnemyPilot"))
-                {
-                    target.gameObject.GetComponent<EnemyPilot>().takeDamage(10);
-                    ph.setTitanfall(100, 10);
-                }
+                hit.transform.gameObject.GetComponent<EnemyTitan>().takeDamage(85);
+                ph.setTitanfall(100, 50);
             }
+            if (hit.transform.CompareTag("EnemyPilot"))
+            {
+                hit.transform.gameObject.GetComponent<EnemyPilot>().takeDamage(85);
+                ph.setTitanfall(100, 10);
+            }
+        
         }
     }
 

@@ -9,6 +9,7 @@ public class grenadeExplosion : MonoBehaviour
     private Collider[] shootedEnemies;
     private GameObject instantiatedObj;
     public LayerMask explosionLayers;
+    public PilotHealth ph;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -24,15 +25,19 @@ public class grenadeExplosion : MonoBehaviour
             Debug.Log(shootedEnemy.gameObject.name);
             instantiatedObj = Instantiate(explosionEffect, transform.position, transform.rotation);
             Destroy(instantiatedObj, 3f);
-            Target target = shootedEnemy.gameObject.GetComponent<Target>();
             if (shootedEnemy.gameObject.tag == "EnemyTitan")
             {
-                target.TakeDamage(125, 50);
+                instantiatedObj = Instantiate(explosionEffect, transform.position, transform.rotation);
+                shootedEnemy.gameObject.GetComponent<EnemyTitan>().takeDamage(125);
+                ph.setTitanfall(100, 50);
             }
 
             if (shootedEnemy.gameObject.tag == "EnemyPilot")
             {
-                target.TakeDamage(125, 10);
+                instantiatedObj = Instantiate(explosionEffect, transform.position, transform.rotation);
+                //target.TakeDamage(125, 10);
+                shootedEnemy.gameObject.GetComponent<EnemyPilot>().takeDamage(125);
+                ph.setTitanfall(100, 10);
             }
             Destroy(gameObject);
         }

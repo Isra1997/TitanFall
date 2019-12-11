@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyPilotGun : MonoBehaviour
 {
-    const int gunRange = 4;
+    const int gunRange = 40;
     public ParticleSystem muzzleFlash;
     public PilotHealth ph;
     bool routineFinished = true;
@@ -22,16 +22,21 @@ public class EnemyPilotGun : MonoBehaviour
         {
             //attack();
 
+            //muzzleFlash.Play();
+            //if (ph.enabled)
+            //{
+            //    ph.setHealth(ph.GetHealth() - 70);
+            //}
+            //else
+            //{
+            //    //affect titan
+            //}
+
+            //StartCoroutine(attack());
+            this.gameObject.GetComponent<Animator>().SetBool("fire", true);
+            transform.LookAt(GameObject.FindGameObjectsWithTag("player")[0].transform);
             muzzleFlash.Play();
-            if (ph.enabled)
-            {
-                ph.setHealth(ph.GetHealth() - 70);
-            }
-            else
-            {
-                //affect titan
-            }
-            
+            ph.setHealth(ph.GetHealth() - 70);
             StartCoroutine(attack());
         }
     }
@@ -45,6 +50,8 @@ public class EnemyPilotGun : MonoBehaviour
     {
         routineFinished = false;
         //Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        yield return new WaitForSeconds(this.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        this.gameObject.GetComponent<Animator>().SetBool("fire", false);
         yield return new WaitForSeconds(10);
         //After we have waited 5 seconds print the time again.
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
