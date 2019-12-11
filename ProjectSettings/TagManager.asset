@@ -10,6 +10,7 @@ TagManager:
   - grenadeLauncher
   - rocketLauncher
   - player
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -19,9 +20,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - rocket
+  - player
+  - grenade
   - 
   - 
   - 
