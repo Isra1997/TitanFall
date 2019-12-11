@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyPilotRifle : MonoBehaviour
 {
-    const int rifleRange = 65000;
+    const int rifleRange = 65;
     public ParticleSystem muzzleFlash;
     public PilotHealth ph;
     bool routineFinished = true;
@@ -22,7 +22,15 @@ public class EnemyPilotRifle : MonoBehaviour
             //attack();
 
             muzzleFlash.Play();
-            ph.setHealth(ph.GetHealth() - 85);
+            if (ph.enabled)
+            {
+             ph.setHealth(ph.GetHealth() - 85);
+            }
+            else
+            {
+                //affect the titan
+            }
+            
             StartCoroutine(attack());
         }
     }

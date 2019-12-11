@@ -31,22 +31,10 @@ public class WallRun : MonoBehaviour
     void Update()
     {
 
-     
-        ////Escape pause menu
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    if (pausemenuflag == false)
-        //    {
-        //        fpc.m_MouseLook.setSentivity(0f, 0f);
-        //        pausemenuflag = true;
-        //        pausemenu.SetActive(true);
-        //        Time.timeScale = 0.0f;
-        //    }
-        //    else
-        //    {
-        //        resume();
-        //    }
-        //}
+        if(cc.isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            fpc.m_Jump = true;
+        }
         //WallRun
         if (Input.GetKey(KeyCode.LeftShift) && !cc.isGrounded)
         {
@@ -82,14 +70,6 @@ public class WallRun : MonoBehaviour
         }
         
     }
-
-   //public void resume()
-   // {
-   //     fpc.m_MouseLook.setSentivity(2f, 2f);
-   //     pausemenuflag = false;
-   //     Time.timeScale = 1.0f;
-   //     pausemenu.SetActive(false);
-   // }
 
 
     IEnumerator afterRun(){

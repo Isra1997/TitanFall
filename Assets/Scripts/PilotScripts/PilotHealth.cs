@@ -26,6 +26,9 @@ public class PilotHealth : MonoBehaviour
     private int min = 0;
     private int max = 100;
 
+    private float CurrentTime;
+
+
 
 
     private int CurrentHealth;
@@ -68,8 +71,10 @@ public class PilotHealth : MonoBehaviour
 
     private void Update()
     {
-        //counter();
-        //setHealth(GetHealth() + 3);
+        if (Time.time - CurrentTime >= 3)
+        {
+            setHealth(GetHealth() + 3);
+        }
     }
 
     //Set the ammunation
@@ -84,6 +89,7 @@ public class PilotHealth : MonoBehaviour
     //Set the titanfall meter
     public void setTitanfall(int max,int extraScore)
     {
+        CurrentTime = Time.time;
         float percent = 0;
         if (currentTitanMeter + extraScore <=100)
         {
@@ -117,9 +123,5 @@ public class PilotHealth : MonoBehaviour
         return CurrentHealth;
     }
 
-    IEnumerable counter()
-    {
-        yield return new WaitForSeconds(3);
-    }
-
+    
 }
