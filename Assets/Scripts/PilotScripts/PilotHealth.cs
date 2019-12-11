@@ -47,7 +47,9 @@ public class PilotHealth : MonoBehaviour
     //Set the player health
     public void setHealth(int health)
     {
-            if (health != CurrentHealth)
+		CurrentTime = Time.time;
+
+			if (health != CurrentHealth)
             {
               CurrentHealth = health;
             if (CurrentHealth > 0 && CurrentHealth<=100)

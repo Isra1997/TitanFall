@@ -31,13 +31,17 @@ public class TitanHealth : MonoBehaviour
     //Set the player health
     public void setHealth(int health)
     {
-        if (isDashing)
+      
+        if (!isDashing)
         {
+            Debug.Log("updating1");
             if (health != CurrentHealth)
             {
+                Debug.Log("updating2");
                 CurrentHealth = health;
-                if (CurrentHealth > 0 && CurrentHealth <= 100)
+                if (CurrentHealth > 0 && CurrentHealth <= 400)
                 {
+                    Debug.Log("updating3");
                     perecentage = (float)CurrentHealth / (float)(max - min);
                     TxtHeath.text = string.Format("{0}", Mathf.RoundToInt(perecentage * 100) + "%");
                     ImageHealth.fillAmount = perecentage;

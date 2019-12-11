@@ -19,6 +19,6 @@ public class GameOverScript : MonoBehaviour
 
     public void RestartLevel()
     {
-        //restartlevel
+        SceneManager.LoadScene(0);
     }
 }

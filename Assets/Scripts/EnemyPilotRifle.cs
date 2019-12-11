@@ -27,9 +27,11 @@ public class EnemyPilotRifle : MonoBehaviour
             if (ph.enabled)
             {
                 ph.setHealth(ph.GetHealth() - 10);
+                Debug.Log(ph.GetHealth());
             }
             else
             {
+                Debug.Log("Titian activated");
                 th.setHealth(th.GetHealth() - 10);
             }
 

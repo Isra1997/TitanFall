@@ -29,6 +29,7 @@ public class EnemyPilotSniper : MonoBehaviour
             if (ph.enabled)
             {
                 ph.setHealth(ph.GetHealth() - 85);
+                Debug.Log(ph.GetHealth());
             }
             else
             {
