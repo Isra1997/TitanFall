@@ -18,7 +18,7 @@ public class TitanScript : MonoBehaviour
     private bool isdeployed = false;
     bool inTitan = false;
     private bool inrange;
-
+    bool t = false;
     //GameObjects needed
     public PilotHealth ph;
     public GameObject PilotHelth;
@@ -44,39 +44,88 @@ public class TitanScript : MonoBehaviour
     // Update is called once per frame
     void Update(){
         //Start the dodging
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("dodge the A");
+            if (Input.GetKeyDown(KeyCode.A) && th.getDashAmount() != 0)
+            {
+                th.isDashing = true;
+                th.decDash();
+                StartCoroutine(timer());
+                Debug.Log("dodge the A");
+            }
         }
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("dodge the S");
+            if (Input.GetKeyDown(KeyCode.S) && th.getDashAmount()!=0)
+            {
+                th.isDashing = true;
+                th.decDash();
+                StartCoroutine(timer());
+                Debug.Log("dodge the S");
+            }
         }
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("dodge the D");
+            if (Input.GetKeyDown(KeyCode.D) && th.getDashAmount() != 0)
+            {
+                th.isDashing = true;
+                th.decDash();
+                StartCoroutine(timer());
+                Debug.Log("dodge the D");
+            }
         }
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.W))
+        if(Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("dodge the W");
+            if (Input.GetKeyDown(KeyCode.W) && th.getDashAmount() != 0)
+            {
+                th.isDashing = true;
+                th.decDash();
+                StartCoroutine(timer());
+                Debug.Log("dodge the W");
+            }
         }
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("dodge the down");
+            if (Input.GetKeyDown(KeyCode.DownArrow) && th.getDashAmount() != 0)
+            {
+                th.isDashing = true;
+                th.decDash();
+                StartCoroutine(timer());
+                Debug.Log("dodge the Down");
+            }
         }
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("dodge the up");
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                th.isDashing = true;
+                th.decDash();
+                StartCoroutine(timer());
+                Debug.Log("dodge the up");
+            }
         }
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("dodge the left");
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && th.getDashAmount() != 0)
+            {
+                th.isDashing = true;
+                th.decDash();
+                StartCoroutine(timer());
+                Debug.Log("dodge the Left");
+            }
         }
-        if (Input.GetKey(KeyCode.Space) && Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("dodge the right");
+            if (Input.GetKeyDown(KeyCode.RightArrow) && th.getDashAmount() != 0)
+            {
+                th.isDashing = true;
+                th.decDash();
+                StartCoroutine(timer());
+                Debug.Log("dodge the right");
+            }
         }
         //End the dodging
+
         //Check if titan died
         if (th.isdestroyed)
         {
@@ -114,6 +163,7 @@ public class TitanScript : MonoBehaviour
     
 
     }
+  
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -157,6 +207,12 @@ public class TitanScript : MonoBehaviour
         inTitan = false;
         PilotHelth.SetActive(true);
         TitanHealth.SetActive(false);
+    }
+
+    IEnumerator timer()
+    {
+        yield return new WaitForSeconds(1f);
+        th.isDashing = false;
     }
 
    

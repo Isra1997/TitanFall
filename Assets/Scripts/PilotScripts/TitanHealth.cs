@@ -13,11 +13,12 @@ public class TitanHealth : MonoBehaviour
     private int max = 400;
     private float perecentage;
     public bool isdestroyed = false;
+    public bool isDashing = false;
 
     //Titan Dash Meter text and image 
     public Image DashImg;
     public Text TxtDash;
-    private int Maxdashamount = 3;
+    private int currentDash = 3;
 
     
 
@@ -30,38 +31,49 @@ public class TitanHealth : MonoBehaviour
     //Set the player health
     public void setHealth(int health)
     {
-        if (health != CurrentHealth)
+        if (isDashing)
         {
-            CurrentHealth = health;
-            if (CurrentHealth > 0 && CurrentHealth <= 100)
+            if (health != CurrentHealth)
             {
-                perecentage = (float)CurrentHealth / (float)(max - min);
-                TxtHeath.text = string.Format("{0}", Mathf.RoundToInt(perecentage * 100) + "%");
-                ImageHealth.fillAmount = perecentage;
-            }
-            else
-            {
-                if (CurrentHealth <= 0)
+                CurrentHealth = health;
+                if (CurrentHealth > 0 && CurrentHealth <= 100)
                 {
-                    isdestroyed = true;
+                    perecentage = (float)CurrentHealth / (float)(max - min);
+                    TxtHeath.text = string.Format("{0}", Mathf.RoundToInt(perecentage * 100) + "%");
+                    ImageHealth.fillAmount = perecentage;
                 }
-            }
+                else
+                {
+                    if (CurrentHealth <= 0)
+                    {
+                        isdestroyed = true;
+                    }
+                }
 
+            }
         }
+        
     }
 
-    public void setDash(int decreaseAmount)
+    public void decDash()
     {
-        if (decreaseAmount - decreaseAmount < 0)
+        if (currentDash - 1 <= 0)
         {
             TxtDash.text = string.Format("{0}", Mathf.RoundToInt(0 * 100) + "%");
             DashImg.fillAmount = 0;
         }
         else
         {
-            TxtDash.text = string.Format("{0}", Mathf.RoundToInt((decreaseAmount - decreaseAmount) * 100) + "%");
-            DashImg.fillAmount = 0;
+            currentDash = currentDash - 1;
+            perecentage = (float)currentDash/ 3;
+            TxtDash.text = string.Format("{0}", Mathf.RoundToInt(perecentage * 100) + "%");
+            DashImg.fillAmount = perecentage;
         }
+    }
+
+    public int getDashAmount()
+    {
+        return currentDash;
     }
 
     // Update is called once per frame

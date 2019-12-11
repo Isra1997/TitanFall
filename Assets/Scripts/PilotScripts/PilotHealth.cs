@@ -66,7 +66,7 @@ public class PilotHealth : MonoBehaviour
                
             }
         
-       
+   
     }
 
     private void Update()
@@ -112,6 +112,8 @@ public class PilotHealth : MonoBehaviour
     {
         return currentTitanMeter;
     }
+
+    
 
     public void setWeaponName(string name)
     {
