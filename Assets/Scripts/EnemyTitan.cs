@@ -9,11 +9,14 @@ public class EnemyTitan : MonoBehaviour
     float currentHealth = maxHealth;
     public Slider healthBar;
     Animator anim;
+    public GameObject sceneController;
     // Start is called before the first frame update
     void Start()
     {
         anim = this.gameObject.GetComponent<Animator>();
         healthBar.value = maxHealth;
+        anim.SetBool("walking", true);
+
     }
 
     // Update is called once per frame
@@ -21,7 +24,7 @@ public class EnemyTitan : MonoBehaviour
     {
         if (anim.GetBool("walking"))
         {
-            transform.Translate(0, 0, 0.05f);
+            transform.Translate(0, 0, 0.5f);
         }
 
     }
@@ -34,6 +37,7 @@ public class EnemyTitan : MonoBehaviour
         if (currentHealth <= 0)
         {
             anim.SetBool("dead", true);
+            sceneController.GetComponent<LevelScript>().check();
         }
     }
 }

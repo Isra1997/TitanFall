@@ -11,6 +11,7 @@ TagManager:
   - rocketLauncher
   - player
   - Fire
+  - targeted
   layers:
   - Default
   - TransparentFX

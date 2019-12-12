@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelScript : MonoBehaviour
 {
-    public GameObject[] Enmies;
-    private bool Parkour = false;
-
+    //public GameObject[] Enmies;
+    public int alive;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +21,11 @@ public class LevelScript : MonoBehaviour
 
     public void check()
     {
-        for (int i = 0; i < Enmies.Length; i++)
+        alive = alive - 1;
+        if (alive == 0)
         {
-            if (Enmies[i] != null)
-            {
-                
-            }
-               
+            Debug.Log("ALL DEAD!!!!!");
+            SceneManager.LoadScene(3);
         }
     }
 }

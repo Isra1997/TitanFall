@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class EnemyPilotDying : StateMachineBehaviour
 {
-    //public GameObject EnemyPilot;
+    //public GameObject sceneController;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //sceneController.GetComponent<LevelScript>().check();
         Destroy(animator.gameObject, stateInfo.length);
+        ////sceneController.GetComponent<LevelScript>().alive -= 1;
+        //Debug.Log("DEAD");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -20,6 +23,7 @@ public class EnemyPilotDying : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
+        
     //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
